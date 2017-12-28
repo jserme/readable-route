@@ -13,7 +13,7 @@ post, /api/a, apiA
 get, /api/b, apiB
 ```
 
-readable-route make it equal to 
+`readable-route` make it equal to 
 
 ```javascript
 app.get('/profile', middlewares.login, controllers.showProfile)
