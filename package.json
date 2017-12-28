@@ -1,15 +1,34 @@
 {
   "name": "readable-route",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "readable route for koa ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard index.js test/*; mocha ",
+    "commit": "git-cz",
+    "release": "npm publish && git tag v$npm_package_version && git push origin v$npm_package_version",
+    "changelog": "conventional-changelog -p angular -i changelog.md -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jserme/readable-route.git"
+  },
+  "homepage": "https://github.com/jserme/readable-route#readme",
+  "bugs": {
+    "url": "https://github.com/jserme/readable-route/issues"
   },
   "author": "jserme <dev.hubo@gmail.com> (http://jser.me/)",
   "license": "MIT",
   "devDependencies": {
     "mocha": "^4.0.1",
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "commitizen": "^2.9.5",
+    "conventional-changelog-cli": "^1.2.0",
+    "cz-conventional-changelog": "^1.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }

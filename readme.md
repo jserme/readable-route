@@ -4,13 +4,15 @@ for more readable route define
 
 you can write route like this
 
-```
+```javascript
+const routes = `
 [login]
 get, /profile, showProfile
 
 [oauth, checkPremission]
 post, /api/a, apiA
 get, /api/b, apiB
+`
 ```
 
 `readable-route` make it equal to 
