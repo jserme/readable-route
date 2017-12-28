@@ -1,0 +1,15 @@
+{
+  "name": "readable-route",
+  "version": "1.0.0",
+  "description": "readable route for koa ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jserme <dev.hubo@gmail.com> (http://jser.me/)",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "standard": "^10.0.3"
+  }
+}
