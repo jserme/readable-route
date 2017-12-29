@@ -43,7 +43,7 @@ function readableRoute (routes, app, middlewares, controllers) {
         throw new Error(`${controller} not found in controllers`)
       }
 
-      const args = [path].concat(curMiddlewares).concat(controllers[controller])
+      const args = [path].concat(curMiddlewares).concat(controller)
       Reflect.apply(app[verb], app, args)
     }
   }
