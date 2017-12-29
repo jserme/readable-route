@@ -1,3 +1,18 @@
+function getSubObject (o, keysWithDot) {
+  let rst = o
+  const keys = keysWithDot.split('.')
+
+  for (let key of keys) {
+    if (rst[key] === undefined) {
+      rst = undefined
+      break
+    }
+    rst = rst[key]
+  }
+
+  return rst
+}
+
 function readableRoute (routes, app, middlewares, controllers) {
   const cleanRoutes = routes
   .replace(/^\s*\/\/.*$/gm, '')
@@ -9,16 +24,22 @@ function readableRoute (routes, app, middlewares, controllers) {
   for (let row of cleanRoutes.split('\n')) {
     if (/\[[^\]]*\]/.test(row)) {
       curMiddlewares = row.slice(1, row.length - 1).split(',')
+      if (curMiddlewares.length > 0) {
+        curMiddlewares = curMiddlewares.map((m) => {
+          return getSubObject(middlewares, m)
+        })
+      }
       continue
     }
 
-    const [verb, path, controller] = row.split(',')
-    if (verb && path && controller) {
+    const [verb, path, controllerStr] = row.split(',')
+    if (verb && path && controllerStr) {
       if (app[verb] === undefined) {
         throw new Error(`${verb} not found in app`)
       }
 
-      if (controllers[controller] === undefined) {
+      const controller = getSubObject(controllers, controllerStr)
+      if (controller === undefined) {
         throw new Error(`${controller} not found in controllers`)
       }
 
@@ -27,5 +48,8 @@ function readableRoute (routes, app, middlewares, controllers) {
     }
   }
 }
+
+// export for test
+readableRoute.getSubObject = getSubObject
 
 module.exports = readableRoute

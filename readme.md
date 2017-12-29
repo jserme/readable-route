@@ -33,6 +33,7 @@ const routes = `
     get,  /, index
     [login]
         get, /profile, showProfile
+        get, /user/id, user.showId
 
     //another comment
     [oauth, checkPremission]
