@@ -1,3 +1,13 @@
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/jserme/readable-route/compare/v1.1.1...v1.1.2) (2017-12-29)
+
+
+### Bug Fixes
+
+* add middleware check ([94cbe99](https://github.com/jserme/readable-route/commit/94cbe99))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/jserme/readable-route/compare/v1.0.1...v1.1.1) (2017-12-29)
 
