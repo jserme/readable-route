@@ -23,11 +23,16 @@ function readableRoute (routes, app, middlewares, controllers) {
 
   for (let row of cleanRoutes.split('\n')) {
     if (/\[[^\]]*\]/.test(row)) {
-      curMiddlewares = row.slice(1, row.length - 1).split(',')
-      if (curMiddlewares.length > 0) {
-        curMiddlewares = curMiddlewares.map((m) => {
-          return getSubObject(middlewares, m)
-        })
+      const mws = row.slice(1, row.length - 1).split(',')
+      for (let mw of mws) {
+        if (mw === '') continue
+
+        const m = getSubObject(middlewares, mw)
+        if (m === undefined) {
+          throw new Error(`${mw} not found in middlewares`)
+        } else {
+          curMiddlewares.push(m)
+        }
       }
       continue
     }
