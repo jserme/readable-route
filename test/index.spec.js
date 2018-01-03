@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const readableRoute = require('../')
-const assert = require('assert')
+const assert = require('power-assert')
 
 const middlewares = {
   m1: () => {},

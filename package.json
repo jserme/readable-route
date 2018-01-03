@@ -4,10 +4,14 @@
   "description": "readable route for koa ",
   "main": "index.js",
   "scripts": {
+    "lint": "standard *.js lib/*.js test/*.js ",
+    "cover": "nyc mocha",
     "test": "standard index.js test/*; mocha ",
-    "commit": "git-cz",
     "release": "npm publish && git tag v$npm_package_version && git push origin v$npm_package_version",
-    "changelog": "conventional-changelog -p angular -i changelog.md -s"
+    "changelog": "conventional-changelog -p angular -i changelog.md -s",
+    "precommit": "npm run lint && lint-staged",
+    "preparecommitmsg": "prepare-commit-msg-angular $2 $3",
+    "commitmsg": "commitlint -x @commitlint/config-conventional -e $GIT_PARAMS"
   },
   "repository": {
     "type": "git",
@@ -19,12 +23,24 @@
   },
   "author": "jserme <dev.hubo@gmail.com> (http://jser.me/)",
   "license": "MIT",
+  "lint-staged": {
+    "**/*.js": [
+      "standard --fix",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "mocha": "^4.0.1",
     "standard": "^10.0.3",
-    "commitizen": "^2.9.5",
     "conventional-changelog-cli": "^1.2.0",
-    "cz-conventional-changelog": "^1.2.0"
+    "intelli-espower-loader": "^1.0.1",
+    "nyc": "^11.4.1",
+    "power-assert": "^1.4.2",
+    "@commitlint/cli": "^5.2.8",
+    "@commitlint/config-conventional": "^5.2.3",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "prepare-commit-msg-angular": "^0.2.0"
   },
   "config": {
     "commitizen": {
