@@ -24,6 +24,8 @@ function readableRoute (routes, app, middlewares, controllers) {
   for (let row of cleanRoutes.split('\n')) {
     if (/\[[^\]]*\]/.test(row)) {
       const mws = row.slice(1, row.length - 1).split(',')
+      // init a new empty middleware container
+      curMiddlewares = []
       for (let mw of mws) {
         if (mw === '') continue
 

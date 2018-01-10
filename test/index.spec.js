@@ -49,8 +49,36 @@ describe('readable-route', () => {
     get,    /path3,    c3
     patch,  /path4,  c4
 `
+
+    let getCount = 0
+    let patchCount = 0
+
+    const app = {
+      'get': function () {
+        getCount++
+        const args = Array.from(arguments)
+        if (args[0] === '/path1') {
+          assert(args.length === 5)
+        }
+        if (args[0] === '/path3') {
+          assert(args.length === 3)
+        }
+      },
+      'patch': function () {
+        patchCount++
+        const args = Array.from(arguments)
+        if (args[0] === '/path1') {
+          assert(args.length === 5)
+        }
+        if (args[0] === '/path3') {
+          assert(args.length === 3)
+        }
+      }
+    }
+
     readableRoute(routes, app, middlewares, controllers)
-    assert(count === 4)
+    assert(getCount === 2)
+    assert(patchCount === 2)
   })
 
   it('// comment support', () => {
